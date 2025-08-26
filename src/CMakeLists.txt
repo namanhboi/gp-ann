@@ -27,3 +27,8 @@ target_sources(GraphQualityBench PRIVATE partitioning.cpp)
 target_sources(OracleRecall PRIVATE routes.cpp kmeans_tree_router.cpp)
 
 target_sources(AnalyzeApproximationLosses PRIVATE routes.cpp kmeans_tree_router.cpp)
+
+file(GLOB CPP_FILES "*.cpp")
+add_library(partition_lib ${CPP_FILES})
+target_include_directories(partition_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(partition_lib PUBLIC parlay kaminpar_shm)
